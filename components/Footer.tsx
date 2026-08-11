@@ -90,8 +90,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-orange-500" />
-                <a href="mailto:info@5mfactor.com" className="hover:text-orange-500">
-                  info@5mfactor.com
+                <a href="mailto:info@5mfactormuhendislik.com.tr" className="hover:text-orange-500">
+                  info@5mfactormuhendislik.com.tr
                 </a>
               </li>
             </ul>

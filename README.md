@@ -42,7 +42,7 @@ public/                Statik varlıklar
 
 ## Kurulum
 
-Depoyu klonladıktan sonra bağımlılıkları yükleyin:
+Depoyu klonladıktan sonra gerekli paketleri yükleyin:
 
 ```bash
 npm install

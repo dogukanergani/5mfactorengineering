@@ -60,10 +60,10 @@ export default function IletisimPage() {
                 <div>
                   <p className="font-semibold text-white">E-posta</p>
                   <a
-                    href="mailto:info@5mfactor.com"
+                    href="mailto:info@5mfactormuhendislik.com.tr"
                     className="mt-1 block text-sm text-gray-300 hover:text-orange-500"
                   >
-                    info@5mfactor.com
+                    info@5mfactormuhendislik.com.tr
                   </a>
                 </div>
               </div>

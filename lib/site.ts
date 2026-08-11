@@ -7,7 +7,7 @@ export const siteConfig = {
     "Ankara, Ostim ve Başkent OSB başta olmak üzere tüm Türkiye'ye doğalgaz sistemleri, mekanik tesisat ve endüstriyel imalat alanlarında profesyonel mühendislik çözümleri sunuyoruz.",
   phone: "+905316760684",
   phoneDisplay: "0531 676 06 84",
-  email: "info@5mfactor.com",
+  email: "info@5mfactormuhendislik.com.tr",
   address: {
     streetAddress:
       "Malıköy Başkent Organize Sanayi Bölgesi Mahallesi 20. Cadde Blok:H No:5 İç Kapı No:1",
