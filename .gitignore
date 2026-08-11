@@ -22,6 +22,13 @@
 
 # misc
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 *.pem
 
 # debug
@@ -29,9 +36,16 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+logs
+*.log
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*
 
 # vercel
 .vercel
@@ -39,3 +53,32 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editor / IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# AI / code-assistant local configuration and artifacts
+.cursorrules
+.cursor/
+.cline/
+.clinerules
+.copilot/
+.github/copilot-instructions.md
+.aider*
+.windsurfrules
+.continue/
+CLAUDE.md
+AGENTS.md
+.claude/
+prompt.txt
+prompts/
+*.prompt
+ai-log*
+*.ai.log
