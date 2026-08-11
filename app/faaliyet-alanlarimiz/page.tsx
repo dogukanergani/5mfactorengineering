@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { faaliyetAlanlari } from "@/lib/faaliyet-alanlari";
 import { serviceIcons } from "@/lib/service-icons";
@@ -31,12 +32,23 @@ export default function FaaliyetAlanlariPage() {
                 <Link
                   key={alan.slug}
                   href={`/faaliyet-alanlarimiz/${alan.slug}`}
-                  className="group flex aspect-square flex-col items-center justify-center gap-4 rounded-lg bg-gray-800 p-6 text-center transition-colors hover:bg-gray-700"
+                  className="group overflow-hidden rounded-xl border border-gray-700 bg-gray-800 transition-colors hover:border-orange-500"
                 >
-                  <Icon className="h-12 w-12 text-orange-500" />
-                  <p className="text-base font-semibold text-white transition-colors group-hover:text-orange-500">
-                    {alan.title}
-                  </p>
+                  <div className="relative h-48 w-full">
+                    <Image
+                      src={alan.image}
+                      alt={alan.imageAlt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col items-center gap-3 p-6 text-center">
+                    <Icon className="h-8 w-8 text-orange-500" />
+                    <p className="text-base font-semibold text-white transition-colors group-hover:text-orange-500">
+                      {alan.title}
+                    </p>
+                  </div>
                 </Link>
               );
             })}
