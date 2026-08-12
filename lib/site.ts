@@ -1,4 +1,4 @@
-const SITE_URL = "https://www.5mfactor.com";
+const SITE_URL = "https://www.5mfactormuhendislik.com.tr";
 
 export const siteConfig = {
   name: "5M Factor Mühendislik",
