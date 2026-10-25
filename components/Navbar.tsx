@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import { InstagramIcon } from "@/components/SocialIcons";
-import { faaliyetAlanlari } from "@/lib/faaliyet-alanlari";
+import { services as faaliyetAlanlari } from "@/lib/servicesData";
 
 const navLinks = [
   { label: "Anasayfa", href: "/" },
-  { label: "Kurumsal", href: "/kurumsal" },
+  { label: "Hakkımızda", href: "/kurumsal" },
+  { label: "Projeler", href: "/projeler" },
   { label: "Blog", href: "/blog" },
 ];
 
@@ -18,6 +19,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const [openMobileService, setOpenMobileService] = useState<string | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
@@ -27,9 +29,10 @@ export default function Navbar() {
   }, [isMobileMenuOpen]);
 
   const isActive = (href: string) => pathname === href;
+  const isServicesActive = pathname.startsWith("/faaliyet-alanlarimiz");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-800 bg-black">
+    <header className="sticky top-0 z-50 border-b border-gray-800 bg-gray-900">
       <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <Link href="/">
           <Image
@@ -37,7 +40,7 @@ export default function Navbar() {
             alt="5M Factor Mühendislik Ankara Doğalgaz ve Mekanik Tesisat Logosu"
             width={300}
             height={100}
-            className="object-contain w-auto h-12 md:h-16"
+            className="object-contain w-auto h-14 md:h-20"
           />
         </Link>
 
@@ -64,21 +67,45 @@ export default function Navbar() {
             );
           })}
           <li className="group relative">
-            <button className="relative flex items-center gap-1 py-2 group-hover:text-orange-500">
+            <Link
+              href="/faaliyet-alanlarimiz"
+              className={`relative flex items-center gap-1 py-2 transition-colors ${
+                isServicesActive ? "text-orange-500" : "group-hover:text-orange-500"
+              }`}
+            >
               Faaliyet Alanlarımız
               <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
-            </button>
-            <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-orange-500 transition-all duration-300 group-hover:w-full" />
+            </Link>
+            <span
+              className={`absolute -bottom-1 left-0 h-0.5 bg-orange-500 transition-all duration-300 ${
+                isServicesActive ? "w-full" : "w-0 group-hover:w-full"
+              }`}
+            />
             <div className="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
               <ul className="mt-2 rounded-md bg-gray-800 py-2 shadow-lg ring-1 ring-gray-700">
                 {faaliyetAlanlari.map((alan) => (
-                  <li key={alan.slug}>
+                  <li key={alan.slug} className="group/item relative">
                     <Link
                       href={`/faaliyet-alanlarimiz/${alan.slug}`}
-                      className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover:text-orange-500"
+                      className="flex items-center justify-between gap-2 px-4 py-2 text-sm text-gray-200 group-hover/item:bg-gray-700 group-hover/item:text-orange-500"
                     >
                       {alan.title}
+                      <ChevronRight className="h-4 w-4 shrink-0" />
                     </Link>
+                    <div className="invisible absolute left-full top-0 w-72 opacity-0 transition-all duration-200 group-hover/item:visible group-hover/item:opacity-100">
+                      <ul className="ml-1 rounded-md bg-gray-800 py-2 shadow-lg ring-1 ring-gray-700">
+                        {alan.subServices.map((sub) => (
+                          <li key={sub.slug}>
+                            <Link
+                              href={`/faaliyet-alanlarimiz/${alan.slug}/${sub.slug}`}
+                              className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover:text-orange-500"
+                            >
+                              {sub.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -135,8 +162,8 @@ export default function Navbar() {
 
       {/* Mobil açılır menü */}
       <div
-        className={`overflow-hidden bg-black transition-[max-height] duration-300 ease-in-out lg:hidden ${
-          isMobileMenuOpen ? "max-h-[32rem]" : "max-h-0"
+        className={`overflow-y-auto bg-gray-900 transition-[max-height] duration-300 ease-in-out lg:hidden ${
+          isMobileMenuOpen ? "max-h-[calc(100vh-5rem)]" : "max-h-0"
         }`}
       >
         <ul className="flex flex-col divide-y divide-gray-700 px-6 text-gray-200">
@@ -154,31 +181,77 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <button
-              type="button"
-              onClick={() => setIsAccordionOpen((open) => !open)}
-              className="flex w-full items-center justify-between py-4 font-medium hover:text-orange-500"
-            >
-              Faaliyet Alanlarımız
-              <ChevronDown
-                className={`h-4 w-4 transition-transform ${isAccordionOpen ? "rotate-180" : ""}`}
-              />
-            </button>
+            <div className="flex items-center justify-between">
+              <Link
+                href="/faaliyet-alanlarimiz"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block flex-1 py-4 font-medium transition-colors hover:text-orange-500 ${
+                  isServicesActive ? "text-orange-500" : ""
+                }`}
+              >
+                Faaliyet Alanlarımız
+              </Link>
+              <button
+                type="button"
+                aria-label="Faaliyet alanlarını aç/kapat"
+                aria-expanded={isAccordionOpen}
+                onClick={() => setIsAccordionOpen((open) => !open)}
+                className="p-4 hover:text-orange-500"
+              >
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${isAccordionOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+            </div>
             <div
               className={`overflow-hidden transition-[max-height] duration-300 ease-in-out ${
-                isAccordionOpen ? "max-h-96" : "max-h-0"
+                isAccordionOpen ? "max-h-[80rem]" : "max-h-0"
               }`}
             >
               <ul className="pb-2 pl-4">
                 {faaliyetAlanlari.map((alan) => (
                   <li key={alan.slug}>
-                    <Link
-                      href={`/faaliyet-alanlarimiz/${alan.slug}`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 text-sm text-gray-400 hover:text-orange-500"
-                    >
-                      {alan.title}
-                    </Link>
+                    <div className="flex items-center justify-between">
+                      <Link
+                        href={`/faaliyet-alanlarimiz/${alan.slug}`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block flex-1 py-2 text-sm text-gray-300 hover:text-orange-500"
+                      >
+                        {alan.title}
+                      </Link>
+                      <button
+                        type="button"
+                        aria-label={`${alan.title} alt hizmetlerini aç/kapat`}
+                        aria-expanded={openMobileService === alan.slug}
+                        onClick={() =>
+                          setOpenMobileService((current) =>
+                            current === alan.slug ? null : alan.slug
+                          )
+                        }
+                        className="p-2 text-gray-400 hover:text-orange-500"
+                      >
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform ${
+                            openMobileService === alan.slug ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
+                    {openMobileService === alan.slug && (
+                      <ul className="mb-2 border-l border-gray-700 pl-4">
+                        {alan.subServices.map((sub) => (
+                          <li key={sub.slug}>
+                            <Link
+                              href={`/faaliyet-alanlarimiz/${alan.slug}/${sub.slug}`}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="block py-2 text-sm text-gray-400 hover:text-orange-500"
+                            >
+                              {sub.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>

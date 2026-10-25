@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "5M Factor Mühendislik",
   url: SITE_URL,
   description:
-    "Ankara, Ostim ve Başkent OSB başta olmak üzere tüm Türkiye'ye doğalgaz sistemleri, mekanik tesisat ve endüstriyel imalat alanlarında profesyonel mühendislik çözümleri sunuyoruz.",
+    "Ankara merkezli 5M Factor Mühendislik: HVAC, yangın söndürme, sıhhi tesisat, doğal gaz, basınçlı hava ve proses tesisatlarında projelendirme ve anahtar teslim uygulama.",
   phone: "+905316760684",
   phoneDisplay: "0531 676 06 84",
   email: "info@5mfactormuhendislik.com.tr",
@@ -24,5 +24,7 @@ export const siteConfig = {
     "Kırıkkale",
     "Türkiye",
   ],
+  /** İçerik son güncelleme tarihi (sitemap lastModified için) */
+  lastUpdated: "2026-10-25",
   organizationId: `${SITE_URL}/#organization`,
 };

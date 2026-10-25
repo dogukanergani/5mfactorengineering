@@ -1,13 +1,14 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog-posts";
-import { faaliyetAlanlari } from "@/lib/faaliyet-alanlari";
+import { projects } from "@/lib/projects";
+import { services } from "@/lib/servicesData";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: siteConfig.url,
-      lastModified: new Date(),
+      lastModified: new Date(siteConfig.lastUpdated),
       changeFrequency: "yearly",
       priority: 1,
       images: [
@@ -16,39 +17,62 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteConfig.url}/kurumsal`,
-      lastModified: new Date(),
+      lastModified: new Date(siteConfig.lastUpdated),
       changeFrequency: "yearly",
       priority: 0.7,
     },
     {
       url: `${siteConfig.url}/iletisim`,
-      lastModified: new Date(),
+      lastModified: new Date(siteConfig.lastUpdated),
       changeFrequency: "yearly",
       priority: 0.7,
     },
     {
       url: `${siteConfig.url}/faaliyet-alanlarimiz`,
-      lastModified: new Date(),
+      lastModified: new Date(siteConfig.lastUpdated),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${siteConfig.url}/blog`,
-      lastModified: new Date(),
+      lastModified: new Date(siteConfig.lastUpdated),
       changeFrequency: "weekly",
       priority: 0.7,
     },
   ];
 
-  const serviceRoutes: MetadataRoute.Sitemap = faaliyetAlanlari.map(
-    (alan) => ({
-      url: `${siteConfig.url}/faaliyet-alanlarimiz/${alan.slug}`,
-      lastModified: new Date(),
+  const serviceRoutes: MetadataRoute.Sitemap = services.flatMap((service) => [
+    {
+      url: `${siteConfig.url}/faaliyet-alanlarimiz/${service.slug}`,
+      lastModified: new Date(siteConfig.lastUpdated),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+      images: [service.image],
+    },
+    ...service.subServices.map((sub) => ({
+      url: `${siteConfig.url}/faaliyet-alanlarimiz/${service.slug}/${sub.slug}`,
+      lastModified: new Date(siteConfig.lastUpdated),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      images: [sub.image],
+    })),
+  ]);
+
+  const projectRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${siteConfig.url}/projeler`,
+      lastModified: new Date(siteConfig.lastUpdated),
       changeFrequency: "monthly",
       priority: 0.8,
-      images: [alan.image],
-    })
-  );
+    },
+    ...projects.map((project) => ({
+      url: `${siteConfig.url}/projeler/${project.slug}`,
+      lastModified: new Date(project.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      images: [project.image],
+    })),
+  ];
 
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${siteConfig.url}/blog/${post.slug}`,
@@ -58,5 +82,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     images: [post.image],
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...blogRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...projectRoutes, ...blogRoutes];
 }

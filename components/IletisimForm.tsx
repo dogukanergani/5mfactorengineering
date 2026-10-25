@@ -3,7 +3,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 
 const inputClassName =
-  "mt-2 w-full rounded-md border border-gray-700 bg-gray-900 px-4 py-2.5 text-sm text-white placeholder:text-gray-500 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500";
+  "mt-2 w-full rounded-md border border-gray-300 bg-card px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500";
 
 const initialFormData = {
   name: "",
@@ -57,7 +57,7 @@ export default function IletisimForm() {
 
   if (isSuccess) {
     return (
-      <div className="bg-green-900/20 border border-green-500 text-green-400 p-6 rounded-xl text-center">
+      <div className="bg-green-50 border border-green-500 text-green-700 p-6 rounded-xl text-center">
         Mesajınız başarıyla alınmıştır. Uzman mühendislik ekibimiz en kısa
         sürede sizinle iletişime geçecektir.
       </div>
@@ -67,11 +67,11 @@ export default function IletisimForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-5 rounded-xl border border-gray-700 bg-gray-800 p-6 sm:p-8"
+      className="space-y-5 rounded-xl border border-gray-300 bg-card p-6 shadow-sm sm:p-8"
     >
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
             Ad Soyad
           </label>
           <input
@@ -86,7 +86,7 @@ export default function IletisimForm() {
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
             E-posta
           </label>
           <input
@@ -101,7 +101,7 @@ export default function IletisimForm() {
           />
         </div>
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-300">
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
             Telefon
           </label>
           <input
@@ -115,7 +115,7 @@ export default function IletisimForm() {
           />
         </div>
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-300">
+          <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
             Konu
           </label>
           <input
@@ -131,7 +131,7 @@ export default function IletisimForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-300">
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700">
           Mesaj
         </label>
         <textarea
@@ -147,7 +147,7 @@ export default function IletisimForm() {
       </div>
 
       {error && (
-        <p className="rounded-md border border-red-500 bg-red-900/20 px-4 py-2.5 text-sm text-red-400">
+        <p className="rounded-md border border-red-500 bg-red-50 px-4 py-2.5 text-sm text-red-600">
           {error}
         </p>
       )}

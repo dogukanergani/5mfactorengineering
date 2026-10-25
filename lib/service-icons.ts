@@ -1,18 +1,24 @@
 import {
-  Building2,
+  Cable,
+  Droplets,
   Factory,
-  FileText,
+  Fan,
   Flame,
+  Gauge,
   Settings,
-  Wrench,
+  ShieldAlert,
+  Thermometer,
   type LucideIcon,
 } from "lucide-react";
 
 export const serviceIcons: Record<string, LucideIcon> = {
-  "dogalgaz-sistemleri": Flame,
-  "mekanik-tesisat-sistemleri": Wrench,
-  "projelendirme-ve-taahhut": FileText,
-  "endustriyel-imalat-ve-montaj": Factory,
-  "endustriyel-tesisler": Building2,
-  "bakim-onarim-ve-revizyon": Settings,
+  "endustriyel-ve-konfor-hvac": Fan,
+  "yangindan-korunma": ShieldAlert,
+  "sihhi-tesisat": Droplets,
+  otomasyon: Settings,
+  "dogal-gaz": Flame,
+  "basincli-hava": Gauge,
+  "kizgin-yag-su-buhar": Thermometer,
+  altyapi: Cable,
+  "endustriyel-proses": Factory,
 };

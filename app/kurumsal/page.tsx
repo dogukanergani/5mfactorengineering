@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Kurumsal",
+  title: "Hakkımızda – Ankara Mühendislik ve Taahhüt Firması",
   description:
-    "5M Factor Mühendislik'in Ankara merkezli kurumsal geçmişi, vizyonu ve misyonu hakkında bilgi alın. Başkent OSB'den tüm Türkiye'ye mühendislik ve taahhüt hizmetleri.",
+    "Sincan Başkent OSB merkezli 5M Factor Mühendislik'in Ankara'daki geçmişi, vizyonu ve misyonu. HVAC, doğal gaz, yangın ve proses tesisatlarında güvenilir mühendislik ortağı.",
   alternates: {
     canonical: "/kurumsal",
   },
@@ -13,13 +13,19 @@ export const metadata: Metadata = {
 export default function KurumsalPage() {
   return (
     <main className="flex flex-1 flex-col">
-      <section className="px-6 pb-16 pt-28 sm:pt-32 lg:px-8">
-        <div className="container mx-auto grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
+      <section className="px-6 pb-12 pt-10 sm:pt-12 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            Hakkımızda
+          </h1>
+          <span className="mt-4 block h-1 w-16 rounded-full bg-orange-500" />
+        </div>
+      </section>
+
+      <section className="flex-1 bg-paper px-6 py-14 lg:px-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
           <div>
-            <h2 className="text-2xl font-bold text-white sm:text-3xl">
-              Hakkımızda
-            </h2>
-            <p className="mt-6 text-base leading-7 text-gray-300">
+            <p className="text-base text-base leading-7 text-gray-600">
               <span className="font-semibold text-orange-500">
                 5M Factor Mühendislik
               </span>{" "}
@@ -34,8 +40,8 @@ export default function KurumsalPage() {
               </span>{" "}
               ve güvenlikten ödün vermeden çalışıyoruz.
             </p>
-            <p className="mt-4 text-base leading-7 text-gray-300">
-              <span className="font-semibold text-white">Vizyonumuz</span>,
+            <p className="mt-4 text-base leading-7 text-gray-600">
+              <span className="font-semibold text-gray-900">Vizyonumuz</span>,
               mühendislik ve inşaat sektöründe bölgemizin en çok tercih edilen
               çözüm ortağı olmak; yenilikçi mühendislik yaklaşımlarını
               yerinde uygulama disipliniyle birleştirerek her ölçekten
@@ -43,8 +49,8 @@ export default function KurumsalPage() {
               gelişmeleri yakından takip ederek, hem verimliliği hem de iş
               güvenliğini en üst seviyede tutmayı amaçlıyoruz.
             </p>
-            <p className="mt-4 text-base leading-7 text-gray-300">
-              <span className="font-semibold text-white">Misyonumuz</span>{" "}
+            <p className="mt-4 text-base leading-7 text-gray-600">
+              <span className="font-semibold text-gray-900">Misyonumuz</span>{" "}
               ise, planlama aşamasından anahtar teslim uygulamaya kadar
               tüm süreçlerde şeffaf iletişim kurmak, zamanında teslimat
               taahhüdümüzü koşulsuz yerine getirmek ve müşterilerimizin uzun
@@ -52,7 +58,7 @@ export default function KurumsalPage() {
               ekiplerimizle, her projeyi kendi tesisimizmiş gibi sahiplenerek
               yürütüyoruz.
             </p>
-            <p className="mt-4 text-base leading-7 text-gray-300">
+            <p className="mt-4 text-base leading-7 text-gray-600">
               Kalite anlayışımızın merkezinde{" "}
               <span className="font-semibold text-orange-500">
                 güvenlik
@@ -64,7 +70,7 @@ export default function KurumsalPage() {
             </p>
           </div>
 
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-700 shadow-lg">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-300 shadow-lg">
             <Image
               src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop"
               alt="Ankara Başkent OSB Şantiyesinde 5M Factor Mühendislik ve Taahhüt Ekibi"

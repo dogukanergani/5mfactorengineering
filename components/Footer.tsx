@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { InstagramIcon } from "@/components/SocialIcons";
-import { faaliyetAlanlari } from "@/lib/faaliyet-alanlari";
+import { services as faaliyetAlanlari } from "@/lib/servicesData";
 
 const hizliBaglantilar = [
   { label: "Anasayfa", href: "/" },
-  { label: "Kurumsal", href: "/kurumsal" },
+  { label: "Hakkımızda", href: "/kurumsal" },
+  { label: "Projeler", href: "/projeler" },
   { label: "Blog", href: "/blog" },
   { label: "İletişim", href: "/iletisim" },
 ];

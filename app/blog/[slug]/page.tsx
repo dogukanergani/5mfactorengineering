@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import { blogPosts } from "@/lib/blog-posts";
-import { faaliyetAlanlari } from "@/lib/faaliyet-alanlari";
+import { services as faaliyetAlanlari } from "@/lib/servicesData";
 import { siteConfig } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -112,10 +112,11 @@ export default async function BlogPostPage({
           __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <article className="px-6 pb-20 pt-28 sm:pt-32 lg:px-8">
+      <article className="flex flex-1 flex-col">
+        <div className="px-6 pb-10 pt-10 sm:pt-12 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-2 text-sm text-gray-400">
+            <ol className="flex flex-wrap items-center gap-2 text-sm text-gray-500">
               {breadcrumbItems.map((item, index) => {
                 const isLast = index === breadcrumbItems.length - 1;
                 return (
@@ -133,7 +134,7 @@ export default async function BlogPostPage({
                       </Link>
                     )}
                     {!isLast && (
-                      <ChevronRight className="h-4 w-4 shrink-0 text-gray-600" />
+                      <ChevronRight className="h-4 w-4 shrink-0 text-gray-400" />
                     )}
                   </li>
                 );
@@ -144,10 +145,10 @@ export default async function BlogPostPage({
           <span className="text-xs font-semibold uppercase tracking-wide text-orange-500">
             {post.category}
           </span>
-          <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             {post.title}
           </h1>
-          <div className="mt-4 flex items-center gap-3 text-sm text-gray-400">
+          <div className="mt-4 flex items-center gap-3 text-sm text-gray-500">
             <span>{post.author}</span>
             <span>&middot;</span>
             <time dateTime={post.date}>
@@ -159,7 +160,12 @@ export default async function BlogPostPage({
             </time>
           </div>
 
-          <div className="relative mt-8 aspect-[16/9] w-full overflow-hidden rounded-xl border border-gray-700 shadow-lg">
+        </div>
+        </div>
+
+        <div className="flex-1 bg-paper px-6 py-12 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-gray-300 shadow-lg">
             <Image
               src={post.image}
               alt={post.imageAlt}
@@ -170,7 +176,7 @@ export default async function BlogPostPage({
             />
           </div>
 
-          <div className="mt-10 space-y-5 text-base leading-7 text-gray-300">
+          <div className="mt-10 space-y-5 text-base leading-7 text-gray-700">
             {post.content.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
@@ -179,11 +185,11 @@ export default async function BlogPostPage({
           {relatedService && (
             <Link
               href={`/faaliyet-alanlarimiz/${relatedService.slug}`}
-              className="mt-10 flex items-center justify-between gap-4 rounded-xl border border-gray-700 bg-gray-800 p-5 transition-colors hover:border-orange-500"
+              className="mt-10 flex items-center justify-between gap-4 rounded-xl border border-gray-300 bg-card shadow-sm p-5 transition-colors hover:border-orange-500"
             >
-              <span className="text-sm text-gray-300">
+              <span className="text-sm text-gray-600">
                 İlgili Hizmetimiz:{" "}
-                <span className="font-semibold text-white">
+                <span className="font-semibold text-gray-900">
                   {relatedService.title}
                 </span>
               </span>
@@ -191,11 +197,11 @@ export default async function BlogPostPage({
             </Link>
           )}
 
-          <div className="mt-12 rounded-2xl border border-gray-700 bg-gray-800 p-8 text-center">
-            <h2 className="text-xl font-bold text-white sm:text-2xl">
+          <div className="mt-12 rounded-2xl border border-gray-300 bg-card shadow-sm p-8 text-center">
+            <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
               Projeniz İçin Mühendislik Desteği Alın
             </h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm text-gray-300">
+            <p className="mx-auto mt-3 max-w-xl text-sm text-gray-600">
               Ankara ve Başkent OSB&apos;deki mühendislik projeleriniz için
               uzman ekibimizle görüşün.
             </p>
@@ -206,6 +212,7 @@ export default async function BlogPostPage({
               Bizimle İletişime Geçin
             </Link>
           </div>
+        </div>
         </div>
       </article>
     </main>

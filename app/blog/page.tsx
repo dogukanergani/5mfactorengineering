@@ -4,9 +4,9 @@ import Link from "next/link";
 import { blogPosts } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Blog – Ankara Mühendislik ve Tesisat Rehberleri",
   description:
-    "Ankara merkezli 5M Factor Mühendislik'ten doğalgaz sistemleri, mekanik tesisat ve endüstriyel bakım hakkında güncel mühendislik makaleleri.",
+    "Ankara merkezli 5M Factor Mühendislik'ten doğal gaz, HVAC, yangın söndürme, basınçlı hava ve proses tesisatı hakkında güncel mühendislik makaleleri.",
   alternates: {
     canonical: "/blog",
   },
@@ -15,25 +15,29 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <main className="flex flex-1 flex-col">
-      <section className="px-6 pb-16 pt-28 sm:pt-32 lg:px-8">
+      <section className="px-6 pb-12 pt-10 sm:pt-12 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12">
-            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          <div>
+            <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               Blog
             </h1>
             <span className="mt-4 block h-1 w-16 rounded-full bg-orange-500" />
-            <p className="mt-4 max-w-2xl text-sm text-gray-400 sm:text-base">
+            <p className="mt-4 max-w-2xl text-sm text-gray-600 sm:text-base">
               Ankara ve Başkent OSB&apos;deki mühendislik projelerimizden
               edindiğimiz tecrübeyi paylaştığımız makaleler.
             </p>
           </div>
+        </div>
+      </section>
 
+      <section className="flex-1 bg-paper px-6 py-14 lg:px-8">
+        <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {blogPosts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group overflow-hidden rounded-xl border border-gray-700 bg-gray-800 transition-colors hover:border-orange-500"
+                className="group overflow-hidden rounded-xl border border-gray-300 bg-card shadow-sm transition-all hover:border-orange-500 hover:shadow-lg"
               >
                 <div className="relative h-48 w-full">
                   <Image
@@ -48,10 +52,10 @@ export default function BlogPage() {
                   <span className="text-xs font-semibold uppercase tracking-wide text-orange-500">
                     {post.category}
                   </span>
-                  <p className="text-lg font-semibold text-white transition-colors group-hover:text-orange-500">
+                  <p className="text-lg font-semibold text-gray-900 transition-colors group-hover:text-orange-500">
                     {post.title}
                   </p>
-                  <p className="text-sm leading-6 text-gray-400">
+                  <p className="text-sm leading-6 text-gray-600">
                     {post.excerpt}
                   </p>
                   <time
